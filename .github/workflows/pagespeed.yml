@@ -18,13 +18,16 @@ jobs:
           python-version: '3.x'
           
       - name: Bağımlılıkları Kur
-        run: pip install requests
+        run: pip install requests pandas matplotlib
         
       - name: PageSpeed Testi Çalıştır (Rakipler)
         run: python scripts/pagespeed.py
         
+      - name: Dashboard Oluştur
+        run: python scripts/dashboard.py
+        
       - name: Sonuçları Yükle
         uses: actions/upload-artifact@v3
         with:
-          name: Competitor PageSpeed Raporu
+          name: Competitor PageSpeed Raporu ve Dashboard
           path: reports/
