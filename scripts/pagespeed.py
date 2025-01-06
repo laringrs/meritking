@@ -11,10 +11,16 @@ def check_pagespeed(url):
     response = requests.get(endpoint)
     result = response.json()
     
+    # Hata kontrolü
+    if 'error' in result:
+        print(f"Hata oluştu: {result['error']['message']}")
+        return None
+    
+    # Skoru hesapla
     score = result['lighthouseResult']['categories']['performance']['score'] * 100
     print(f"{url} için PageSpeed Skoru: {score}")
     
-    # Veriyi CSV'ye kaydet
+    # CSV'ye kaydet
     save_report(url, score)
     return score
 
@@ -22,6 +28,7 @@ def save_report(url, score):
     today = datetime.now().strftime("%Y-%m-%d")
     csv_file = f"reports/pagespeed-report-{today}.csv"
     
+    # CSV dosyasına yazma işlemi
     with open(csv_file, mode='a', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
         writer.writerow(["URL", "Tarih", "Skor"])
@@ -29,4 +36,5 @@ def save_report(url, score):
     
     print(f"Rapor kaydedildi: {csv_file}")
 
-check_pagespeed(site_url)
+if __name__ == "__main__":
+    check_pagespeed(site_url)
