@@ -2,9 +2,9 @@ name: Weekly SEO Audit
 
 on:
   schedule:
-    - cron: '0 0 * * 1'  # Her Pazartesi saat 00:00'da çalışır
-  workflow_dispatch:  # Manuel tetikleme seçeneği
-  
+    - cron: '0 0 * * 1'  # Her Pazartesi gece 00:00'da çalışır
+  workflow_dispatch:  # Manuel olarak çalıştırılabilir
+
 jobs:
   audit:
     runs-on: ubuntu-latest
