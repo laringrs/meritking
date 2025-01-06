@@ -1,0 +1,30 @@
+name: Backlink Analysis
+
+on:
+  schedule:
+    - cron: '0 0 * * 2'  # Her Salı gece 00:00'da çalışır
+  workflow_dispatch:
+
+jobs:
+  backlink-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Depoyu Klonla
+        uses: actions/checkout@v3
+        
+      - name: Python Kurulumu
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+          
+      - name: Bağımlılıkları Yükle
+        run: pip install requests beautifulsoup4
+        
+      - name: Backlink Kontrol Çalıştır
+        run: python scripts/backlink-checker.py
+        
+      - name: Sonuçları Yükle
+        uses: actions/upload-artifact@v3
+        with:
+          name: backlink-report
+          path: reports/
