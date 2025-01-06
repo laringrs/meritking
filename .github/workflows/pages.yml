@@ -1,0 +1,30 @@
+name: Publish to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Depoyu Klonla
+        uses: actions/checkout@v3
+        
+      - name: GitHub Pages'ı Yayınla
+        uses: actions/configure-pages@v3
+        
+      - name: Jekyll Kur ve Siteyi İnşa Et
+        run: |
+          bundle install
+          bundle exec jekyll build
+          
+      - name: Siteyi Yayınla
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./_site
+          
+      - name: GitHub Pages'ı Yayına Al
+        uses: actions/deploy-pages@v2
