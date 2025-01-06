@@ -45,3 +45,27 @@ jobs:
         run: pip install requests beautifulsoup4
       - name: SEO Audit Çalıştır
         run: python scripts/seo-audit.py
+
+ **SEO Audit Script:** Web sitelerinin meta açıklamalarını ve H1 etiketlerini analiz eder.  
+- **Otomatik Raporlama:** Haftalık olarak otomatik SEO raporları oluşturur.  
+- **Veri Takibi:** Anahtar kelime sıralamalarını CSV formatında takip eder.  
+
+### Otomasyon Süreci
+- GitHub Actions kullanarak her Pazartesi SEO analizi yapılır ve rapor `reports` klasörüne eklenir.  
+- Manuel olarak da çalıştırabilirsiniz.  
+
+### Komutlar
+```bash
+python scripts/seo-audit.py
+
+
+---
+
+## **Adım 7: Projenin Geliştirilmesi**  
+Bu aşamadan sonra şunları ekleyebiliriz:  
+- **Backlink Takip Script'i**  
+- **PageSpeed Analiz Aracı**  
+- **Rakip Analizi Otomasyonu**  
+
+Bu adımlarla MeritKing için SEO projen daha verimli ve otomatik hale gelecek. Takıldığın herhangi bir noktada buradayım!
+
