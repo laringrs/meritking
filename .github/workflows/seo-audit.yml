@@ -1,0 +1,30 @@
+name: Weekly SEO Audit
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'  # Her Pazartesi saat 00:00'da çalışır
+  workflow_dispatch:  # Manuel tetikleme seçeneği
+  
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Depoyu Klonla
+        uses: actions/checkout@v3
+        
+      - name: Python Kurulumu
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+          
+      - name: Bağımlılıkları Yükle
+        run: pip install requests beautifulsoup4
+        
+      - name: SEO Audit Çalıştır
+        run: python scripts/seo-audit.py
+        
+      - name: Sonuçları Yükle
+        uses: actions/upload-artifact@v3
+        with:
+          name: seo-audit-report
+          path: reports/
