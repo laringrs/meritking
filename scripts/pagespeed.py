@@ -1,7 +1,7 @@
 import requests
 import json
 
-API_KEY = "YOUR_GOOGLE_PAGESPEED_API_KEY"
+API_KEY = "AIzaSyCcw6pBtx7vNB9EtwouRmMB_VulgZSIMNM"
 site_url = "https://meritking.com"
 
 def check_pagespeed(url):
