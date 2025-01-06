@@ -1,9 +1,9 @@
-name: Weekly PageSpeed Audit
+name: Weekly Competitor PageSpeed Audit
 
 on:
   schedule:
     - cron: '0 0 * * 1'  # Her Pazartesi 00:00'da çalışır
-  workflow_dispatch:  # Manuel olarak da çalıştırılabilir
+  workflow_dispatch:  # Manuel olarak çalıştırmak için
 
 jobs:
   audit:
@@ -20,11 +20,11 @@ jobs:
       - name: Bağımlılıkları Kur
         run: pip install requests
         
-      - name: PageSpeed Testi Çalıştır
+      - name: PageSpeed Testi Çalıştır (Rakipler)
         run: python scripts/pagespeed.py
         
       - name: Sonuçları Yükle
         uses: actions/upload-artifact@v3
         with:
-          name: PageSpeed Raporu
+          name: Competitor PageSpeed Raporu
           path: reports/
