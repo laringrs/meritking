@@ -8,24 +8,25 @@ on:
 permissions:
   contents: read
   pages: write
-  id-token: write  # GitHub Pages için gerekli izinler
+  id-token: write  # Pages erişimi için kritik yetki
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Depoyu Klonla
         uses: actions/checkout@v3
 
-      - name: GitHub Pages'i Yapılandır
+      - name: GitHub Pages’i Yapılandır
         uses: actions/configure-pages@v3
         with:
-          enablement: true  # Pages yapılandırmasını etkinleştir
+          enablement: true  # GitHub Pages’i etkinleştir
 
       - name: Siteyi İnşa Et
         run: |
-          bundle install
-          bundle exec jekyll build
+          mkdir _site
+          echo "Merhaba Dünya" > _site/index.html
 
-      - name: GitHub Pages'ı Yayına Al
+      - name: GitHub Pages’i Yayına Al
         uses: actions/deploy-pages@v2
