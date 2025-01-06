@@ -1,0 +1,36 @@
+name: SEO Automation Workflow
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'  # Her Pazartesi 00:00'da çalışır
+  workflow_dispatch:  # Manuel çalıştırma
+
+jobs:
+  seo_audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Depoyu Klonla
+        uses: actions/checkout@v3
+        
+      - name: Python Kurulumu
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+          
+      - name: Gerekli Kütüphaneleri Kur
+        run: pip install requests beautifulsoup4 pandas matplotlib
+        
+      - name: PageSpeed Analizi Çalıştır
+        run: python scripts/pagespeed.py
+        
+      - name: Backlink Analizi Çalıştır
+        run: python scripts/backlink_checker.py
+        
+      - name: SEO Dashboard Oluştur
+        run: python scripts/dashboard.py
+        
+      - name: Sonuçları Yükle
+        uses: actions/upload-artifact@v3
+        with:
+          name: SEO Raporları
+          path: reports/
